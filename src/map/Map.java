@@ -1,188 +1,127 @@
 package map;
 
-import grid.*;
+//this class is made to design the map on which the game happens
+import grid.*; // To import the whole package
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.LinkedList; //???????
 import java.util.Queue;
 
-/**
- * @author		Wei Wang
- * @version		1.0
- * @since		2015-02-28
- */
 
 public class Map {
 
 	private int widthOfMap, heightOfMap;
-	private Tile[][] mapTile;
-	private String inputCorner;
-	private PathTile entry;
-	private int[][] mapArray;
-	private int[][] cornerArray;
+	//widthOfMap is the horizontal number of MapTiles (x-axis)
+	//heightOfMap is the vertical number of MapTiles (y-axis)
+	private Tile[][] mapTile; //the type is [][] because we need a double array of tiles
+	// a map tile is a tile with a position
+	private String inputCorner;//??????????
+	private PathTile entry;//is the name of the tile that is the entry point
+	private int[][] mapArray;//??????????
+	private int[][] cornerArray;//??????????
 	
-	private static final int CELL_SIZE = 32;
+	private static final int CELL_SIZE = 32; //this is to determine the make the dimension of the map
 
-	private boolean validityOfMap, validityOfPath;
+	private boolean validityOfMap, validityOfPath; //???????
 
-	/**
-	 * Map design
-	 * 
-	 * @param widthOfMap 	The horizontal number of MapTile (x-axis)
-	 * @param heightOfMap	The vertical number of MapTile (y-axis)
-	 */
-	public Map(){
-		super();
+	public Map(){ //constructor to initialize the attributes of the map
+		super(); //?????????uses the constructor of which mother class
 
-		this.widthOfMap = 0;
+		this.widthOfMap = 0; // to initialize the attributes
 		this.heightOfMap = 0;
 		this.inputCorner = "";
 		
 		validityOfMap = true;
 	}
 
-	/**
-	 * Set Map size
-	 * 
-	 * @param widthOfMap	horizontal number of MapTile 
-	 * @param heightOfMap	vertical number of MapTile
-	 */
-	public void setMapSize(int widthOfMap, int heightOfMap){
+	public void setMapSize(int widthOfMap, int heightOfMap){ //method to set the size of the map with the attributes
+		//of width and height previously initialized
 		this.widthOfMap = widthOfMap;
-		this.heightOfMap = heightOfMap;
+		this.heightOfMap = heightOfMap; //to refer to the attributes
 	}
-	
-	/**
-	 * Set Several Points on the path including entry and exit
-	 * 
-	 * @param inputCorner
-	 */
-	public void setInputCorner(String inputCorner){
+
+	public void setInputCorner(String inputCorner){ // to set Several Points on the path including entry and exit
 		this.inputCorner = inputCorner;
 	}
-	
-	/**
-	 * Initialize the Map and set it as default type
-	 * 
-	 * @param mapTile	map grid
-	 */
-	public void initializeMap(){
-		if (widthOfMap > 0 && heightOfMap > 0){
-			mapTile = new Tile[widthOfMap][heightOfMap];
 
-			for (int i = 0 ; i < widthOfMap; i++){
-				for (int j = 0; j < heightOfMap; j++){
-					mapTile[i][j] = new MapTile(i,j);
+	public void initializeMap(){ //method to build the map and work with the attributes previously initialized and set
+		//this method will initialize the map and set it as default type
+		if (widthOfMap > 0 && heightOfMap > 0){ //basic condition for a tile to be correctly located on the map
+			mapTile = new Tile[widthOfMap][heightOfMap]; //we initialize the mapTile attribute by creating a new tyle with
+			//a position (widthOfMap,heightOfMap)
+
+			for (int i = 0 ; i < widthOfMap; i++){ //for every unit of width //i is incremented each time it enter the loop
+				for (int j = 0; j < heightOfMap; j++){ //and for every unit of height //j is incremented each time it enter the loop
+					mapTile[i][j] = new MapTile(i,j); // we create a new tile with the default type Maptile
+					// we begin on the first row, first line and then go "down"
 				}
-			}		
+			}		//What happens to the first maptile created????????is it replaced
 		}
-		validityOfMap = true;
+		validityOfMap = true; //this creates a valid map otherwise there is an error
 	}
 
-	/**
-	 * 
-	 * @return the width of Map
-	 */
-	public int getWidthOfMap(){
+	public int getWidthOfMap(){ //method to get the width of the map
 		return widthOfMap;
 	}
-	
-	/**
-	 * 
-	 * @return width in pixel
-	 */
-	public int getWidthInPixel(){
+
+	public int getWidthInPixel(){ //method to get the width of the map in pixels
 		return widthOfMap * CELL_SIZE;
 	}
 
-	/**
-	 * 
-	 * @return the height of Map
-	 */
-	public int getHeightOfMap(){
+	public int getHeightOfMap(){ //method to get the height of the map
 		return heightOfMap;
 	}
 	
-	public int getHeightInPixel(){
+	public int getHeightInPixel(){ //method to get the height of the map in pixels
 		return heightOfMap * CELL_SIZE;
 	}
-	 
-	/**
-	 * 
-	 * @return	user's input of path
-	 */
-	public String getInputCorner(){
-		return inputCorner;
+
+	public String getInputCorner(){ //method to get the user's input of path //?????????? what is input corner
+		return inputCorner; //input corner is the user's input of path
 	}
 
-	/**
-	 * Retrieve the MapTile
-	 * 
-	 * @param x		X-coordinate
-	 * @param y		Y-coordinate
-	 * @return		the content of MapTile
-	 */
 	public Tile getTile(int x, int y){
+		//method to retrieve  and handle a MapTile because it may cause an exception
 		try {
-			return this.mapTile[x][y];
-		} catch(Exception e){
+			return this.mapTile[x][y]; //it returns the content of a tile ? is the type??????????????????
+		} catch(Exception e){// This is a generic Exception handler which means it can handle
+		 //all the exceptions. This will execute if the exception is not
+		 //handled by previous catch blocks.
+
 
 		}
 		return null;
 	}
-	
-	/**
-	 * 
-	 * @return  cell size in pixel
-	 */
-	public int getPixelSize(){
+
+	public int getPixelSize(){ //method to get the size in pixel of a cell
 		return CELL_SIZE;
 	}
-	
-	/**
-	 * Place Entry Point on Map and change the tile's type  to Entry
-	 * 
-	 * @param x		X-coordinate of Entry point
-	 * @param y		Y-coordinate of Entry point
-	 */
-	public void placeEntry(int x, int y){
-		mapTile[x][y] = new PathTile(x, y);
-		mapTile[x][y].setType(2);
-		entry = (PathTile) mapTile[x][y];
+
+
+	public void placeEntry(int x, int y){ // method to place Entry Point on Map and change the tile's type to Entry
+		mapTile[x][y] = new PathTile(x, y); //the entry point that is chosen is created and is not a Maptile but a pathtile
+		//because it is a part of it
+		mapTile[x][y].setType(2); //we set a new type for this tile because it is not only a path tile but the entry point
+		entry = (PathTile) mapTile[x][y]; //we name this tile "entry"
 	}
 
-	/**
-	 * 
-	 * @return entry point
-	 */
-	public PathTile getEntry(){
+	public PathTile getEntry(){ //method to get the entry point
 		return (PathTile) this.getTile(entry.getX(), entry.getY());
 	}
 
-	/**
-	 * Place Exit point on Map and change the tile's type to Exit
-	 * 
-	 * @param x		X-coordinate of Exit point
-	 * @param y		Y-coordinate of Exit point
-	 */
-	public void placeExit(int x, int y){
-		mapTile[x][y] = new PathTile(x, y);
+	public void placeExit(int x, int y){//method to place the Exit point on the Map and change the tile's type to Exit
+		mapTile[x][y] = new PathTile(x, y); //same as entry point
 		mapTile[x][y].setType(3);
 	}
 
-	/**
-	 * Place the path point on the Map
-	 * Be Careful, the point must exist on the map
-	 * 
-	 * @param x		X-coordinate of assigned PathTile
-	 * @param y		Y-coordinate of assigned PathTile
-	 */
-	public void placePathPoint(int x, int y){
-		if (mapTile[x][y] instanceof MapTile){
-			mapTile[x][y] = new PathTile(x, y);
+	public void placePathPoint(int x, int y){ //method to place a path point on the map
+		if (mapTile[x][y] instanceof MapTile){ //the point of the path must exist on the map and therefore be an a MapTile
+			mapTile[x][y] = new PathTile(x, y); //the maptile becomes a PathTile
 		}
 	}
-	
+
+
+	//???????????????????????????
 	public String arrangePathPoint(ArrayList<Integer> pathPoints){
 		String temp = "";
 		for (int i = 0 ; i < pathPoints.size(); i+=2){
