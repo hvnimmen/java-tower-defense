@@ -1,47 +1,35 @@
 package grid;
 
-/**
- * PathTiles are the components of the design path
- * 
- * @author		Wei Wang
- * @version		1.0
- * @since		2015-02-28
- */
+
+// PathTiles are the tiles that make up the path on the map
 
 public class PathTile extends Tile{
-	
+
 	private PathTile nextTile;
-	
-	/**
-	 * Create new PathTile based on given coordinates
-	 * 
-	 * @param x		X-coordinate related to the one of Map
-	 * @param y		Y-coordinate related to the one of Map
-	 * @param type	Type of Path beside the entry and exit is set as "------"
-	 */
-	public PathTile(int x, int y) {
-		super(x, y);
-		
-		super.setType(1);
+
+	public PathTile(int x, int y) { //constructor to initialise a new PathTile on the map
+		super(x, y); //we refer to the abstract tile class to use coordinates
+
+		super.setType(1); //we associate an "int" to the type of tile
 
 		nextTile = null;
 	}
-	
+
 	/**
 	 * Make a link between the current PathTile and the next one
-	 * 
+	 *
 	 * @param nextTile		The next PathTile according to the current one
 	 */
-	public void setNextTile(PathTile nextTile) {
+	public void setNextTile(PathTile nextTile) { //method to link the current PathTile and the next one
 		this.nextTile = nextTile;
 	}
-	
+
 	/**
 	 * Lead the pointer to the next PathTile
-	 * 
+	 *
 	 * @return the next linked PathTile
 	 */
-	public PathTile getNextTile() {
+	public PathTile getNextTile() { //method to access the nextTile on the path
 		return nextTile;
 	}
 }

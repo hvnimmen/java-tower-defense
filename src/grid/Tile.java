@@ -1,72 +1,46 @@
 package grid;
 
-/**
- * @author		Wei Wang
- * @version		1.0
- * @since		2015-02-28
- */
 
 public abstract class Tile {
 
 	private int x, y, type;
-	
-	/**
-	 * Create new Tile with given coordinates
-	 * 
-	 * @param x		X-coordinate of the tile
-	 * @param y		Y-coordinate of the tile
-	 */
-	public Tile(int x, int y){
+	// x-coordinate
+	//y-coordinate
+	//type is the attribute that allows us to differentiate between path tiles and other tiles
+
+	public Tile(int x, int y){ //constructor to initialise the tile
 		this.x = x;
-		this.y = y;
-	}
-	
-	/**
-	 * Assign the x position
-	 * 
-	 * @param x		X-coordinate
-	 */
-	public void setX(int x){
-		this.x = x;
-	}
-	
-	/**
-	 * Assign the y position
-	 * 
-	 * @param y		Y-coordinate
-	 */
-	public void setY(int y){
 		this.y = y;
 	}
 
-	public void setType(int type){
+	public void setX(int x){//method to set the x-coordinate of the tile
+		this.x = x;
+	}
+
+
+	public void setY(int y){//method to set the y-coordinate of the tile
+		this.y = y;
+	}
+
+	public void setType(int type){ //method to set the type of the tile
 		this.type = type;
 	}
-	
-	/**
-	 * 
-	 * @return x position
-	 */
-	public int getX(){
+
+	public int getX(){ //method to access the x-coordinate of the tile
 		return x;
 	}
 
-	/**
-	 * 
-	 * @return y position
-	 */
-	public int getY(){
+	public int getY(){ //method to access the y-coordinate of the tile
 		return y;
 	}
 
-	/**
-	 * 
-	 * @return whether the tile is a path cell or scenery cell
-	 */
-	public int getType(){
+	public int getType(){ //method to set the type of the tile we are interacting with
 		return type;
 	}
-	
+
+
+
+	//???????????????????????????????????????????????????????????????????????????????????????????????
 	public String toString(){
 		return String.valueOf(getType());
 	}
