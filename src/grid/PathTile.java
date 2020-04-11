@@ -12,23 +12,15 @@ public class PathTile extends Tile{
 
 		super.setType(1); //we associate an "int" to the type of tile
 
-		nextTile = null;
+		nextTile = null; //we initialize the next but null is a "placeholder" value that
+		// means that the object reference in question doesn't actually have a value.
 	}
 
-	/**
-	 * Make a link between the current PathTile and the next one
-	 *
-	 * @param nextTile		The next PathTile according to the current one
-	 */
-	public void setNextTile(PathTile nextTile) { //method to link the current PathTile and the next one
+	public void setNextTile(PathTile nextTile) { //method to link the current PathTile and the next one by being able to set
+		//the next tile
 		this.nextTile = nextTile;
 	}
 
-	/**
-	 * Lead the pointer to the next PathTile
-	 *
-	 * @return the next linked PathTile
-	 */
 	public PathTile getNextTile() { //method to access the nextTile on the path
 		return nextTile;
 	}

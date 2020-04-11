@@ -121,7 +121,7 @@ public class Map {
 	}
 
 
-	//???????????????????????????
+
 	public String arrangePathPoint(ArrayList<Integer> pathPoints){
 		String temp = "";
 		for (int i = 0 ; i < pathPoints.size(); i+=2){
@@ -140,7 +140,15 @@ public class Map {
 	 * @param s		a set of PathTile inputs as a string
 	 * @return all path coordinates in a Queue
 	 */
-	public Queue<PathTile> multipleCoordinatesSplit(String s){
+	public Queue<PathTile> multipleCoordinatesSplit(String s){ //This method takes as a parameter a set of PathTile
+		//inputs as a string and returns all path coordinates in Queue
+		// java.util.Queue interface is a subtype of
+		// java.util.Collection interface. Just like a real-world queue (for instance, in a bank or at ATM),
+		// Queue inserts elements at the end of the queue and removes from the beginning of the queue.
+		//Java Queue represents an ordered list of elements.
+		//So what this method does is reading multiple xy-coordinates from a string
+		// (which is required at least two sets) and split them and insert them in a queue
+
 		inputCorner = s.substring(0);
 		if (inputCorner.isEmpty()){
 			return null;
